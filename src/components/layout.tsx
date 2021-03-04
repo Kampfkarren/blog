@@ -72,7 +72,6 @@ export const Layout: React.FC<{
         <meta property="og:type" content="article" />
         <meta property="og:url" content={url + location.pathname} />
         <meta property="og:image" content="/emblem.png" />
-        <meta name="twitter:card" content="summary" />
 
         {meta?.description && (
           <meta property="og:description" content={meta.description} />
@@ -86,6 +85,9 @@ export const Layout: React.FC<{
         )}
 
         <meta property="og:article:author" content={meta?.author || "boyned"} />
+
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content={`${title} - boyned's blog`} />
       </Helmet>
 
       <Header />
