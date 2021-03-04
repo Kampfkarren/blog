@@ -1,0 +1,30 @@
+name: Deploy site
+on:
+  push:
+    branches:
+      - master
+jobs:
+  build:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+      - name: Configure Git
+        run: |
+          git config --global user.email "example@example.com"
+          git config --global user.name "GitHub Actions Deployment"
+      - name: Setup Node.js
+        uses: actions/setup-node@v1
+        with:
+          node-version: 12.x
+      - name: Install Node.js dependencies
+        run: npm install
+      - name: Build Site
+        run: ./bin/build-site
+      - name: Deploy
+        uses: JamesIves/github-pages-deploy-action@releases/v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: gh-pages
+          FOLDER: public
