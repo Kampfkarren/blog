@@ -21,7 +21,7 @@ jobs:
       - name: Install Node.js dependencies
         run: npm install
       - name: Build Site
-        run: ./bin/build-site.sh
+        run: bash ./bin/build-site.sh
       - name: Deploy
         uses: JamesIves/github-pages-deploy-action@releases/v3
         with:
