@@ -241,7 +241,7 @@ trait BikeshedDataStoreInformation {
 
     fn default() -> Self::Data;
     fn serialize(data: Self::Data) -> Self::Serialized;
-    fn deserialize(data: Self::Serialized) -> Self::Deserialized;
+    fn deserialize(data: Self::Serialized) -> Self::Data;
 }
 ```
 
