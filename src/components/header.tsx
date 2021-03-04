@@ -113,7 +113,7 @@ export const Header: React.FC = () => {
 
           {
             link: "https://github.com/Kampfkarren",
-            text: "Kampfkarren",
+            text: "GitHub",
           },
 
           {
