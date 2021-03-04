@@ -68,6 +68,13 @@ export const Layout: React.FC<{
       <Helmet>
         <title>{title} - boyned's blog</title>
 
+        <meta charSet="utf-8" />
+        <meta httpEquiv="x-ua-compatible" content="ie=edge" />
+        <meta
+          name="viewport"
+          content="width=device-width, initial-scale=1, shrink-to-fit=no"
+        />
+
         <meta property="og:title" content={`${title} - boyned's blog`} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={url + location.pathname} />
