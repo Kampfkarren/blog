@@ -2,9 +2,9 @@ import React from "react";
 import { Helmet } from "react-helmet";
 import styled, { createGlobalStyle } from "styled-components";
 import { Header } from "./header";
-import "@fontsource/m-plus-1p";
 import { useStaticQuery } from "gatsby";
 import { graphql } from "gatsby";
+import "../styles/global.css";
 
 const Main = styled.div`
   font-family: "M PLUS 1p";
