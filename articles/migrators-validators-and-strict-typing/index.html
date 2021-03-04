@@ -155,18 +155,18 @@ Bikeshed<span class="token punctuation">.</span><span class="token function">set
 <p>Something that creates data stores (for replacement) might become:</p>
 <div class="gatsby-highlight" data-language="lua"><pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">itemsToInventory</span><span class="token punctuation">(</span>migrator<span class="token punctuation">)</span>
     <span class="token keyword">return</span> migrator
-        <span class="token punctuation">:</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"Inventory"</span><span class="token punctuation">)</span>
-        <span class="token punctuation">:</span><span class="token function">andThen</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>inventory<span class="token punctuation">)</span>
+        <span class="token punctuation">:</span><span class="token function">get</span><span class="token punctuation">(</span><span class="token string">"Items"</span><span class="token punctuation">)</span>
+        <span class="token punctuation">:</span><span class="token function">andThen</span><span class="token punctuation">(</span><span class="token keyword">function</span><span class="token punctuation">(</span>items<span class="token punctuation">)</span>
             <span class="token keyword">return</span> <span class="token punctuation">{</span>
                 migrators<span class="token punctuation">.</span>action<span class="token punctuation">.</span><span class="token function">createDataStore</span><span class="token punctuation">(</span>
                     <span class="token string">"Inventory"</span><span class="token punctuation">,</span>
-                    inventory<span class="token punctuation">,</span>
+                    items<span class="token punctuation">,</span>
                     t<span class="token punctuation">.</span><span class="token function">array</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span><span class="token function">strictInterface</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
                         Id <span class="token operator">=</span> t<span class="token punctuation">.</span>number<span class="token punctuation">,</span>
                     <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
                 <span class="token punctuation">)</span><span class="token punctuation">,</span>
 
-                migrations<span class="token punctuation">.</span>action<span class="token punctuation">.</span><span class="token function">deleteDataStore</span><span class="token punctuation">(</span><span class="token string">"Inventory"</span><span class="token punctuation">)</span>
+                migrations<span class="token punctuation">.</span>action<span class="token punctuation">.</span><span class="token function">deleteDataStore</span><span class="token punctuation">(</span><span class="token string">"Items"</span><span class="token punctuation">)</span>
             <span class="token punctuation">}</span>
         <span class="token keyword">end</span><span class="token punctuation">)</span>
 <span class="token keyword">end</span></code></pre></div>
