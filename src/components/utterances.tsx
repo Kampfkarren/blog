@@ -7,7 +7,7 @@ export const Utterances: React.FC = () => {
     const script = document.createElement("script");
 
     script.setAttribute("src", "https://utteranc.es/client.js");
-    script.setAttribute("repo", "Kampfkarren/selene");
+    script.setAttribute("repo", "Kampfkarren/blog");
     script.setAttribute("issue-term", "pathname");
     script.setAttribute("label", "comments section");
     script.setAttribute("theme", "github-light");
