@@ -68,10 +68,11 @@ export const Layout: React.FC<{
       <Helmet>
         <title>{title} - boyned's blog</title>
 
-        <meta name="og:title" content={`${title} - boyned's blog`} />
+        <meta property="og:title" content={`${title} - boyned's blog`} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={url + location.pathname} />
         <meta property="og:image" content="/emblem.png" />
+        <meta name="twitter:card" content="summary" />
 
         {meta?.description && (
           <meta property="og:description" content={meta.description} />
