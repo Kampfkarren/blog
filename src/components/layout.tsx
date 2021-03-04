@@ -78,7 +78,7 @@ export const Layout: React.FC<{
         <meta property="og:title" content={`${title} - boyned's blog`} />
         <meta property="og:type" content="article" />
         <meta property="og:url" content={url + location.pathname} />
-        <meta property="og:image" content="/emblem.png" />
+        <meta property="og:image" content={`${url}/emblem.png`} />
 
         {meta?.description && (
           <meta property="og:description" content={meta.description} />
