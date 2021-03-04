@@ -198,7 +198,7 @@ end
 
 ## Strict Typing
 
-I would kill to use TypeScript and roblox-ts. They're stable enough to be used in production, as proved by Zombie Strike, and they *really work*. Even if Typed Lua had the syntax I need (such as generic function arguments, which are purportedly coming soon), it doesn't have the external tooling support required for it to fit into my workflow. The only reason I am not using roblox-ts for my next project is that I am the maintainer of [Selene](https://github.com/Kampfkarren/selene), a Lua linter. My projects move with me, and so if I don't use these tools myself, then they won't progress.
+I would kill to use TypeScript and roblox-ts. They're stable enough to be used in production, as proven by Zombie Strike, and they *really work*. Even if Typed Lua had the syntax I need (such as generic function arguments, which are purportedly coming soon), it doesn't have the external tooling support required for it to fit into my workflow. The only reason I am not using roblox-ts for my next project is that I am the maintainer of [Selene](https://github.com/Kampfkarren/selene), a Lua linter. My projects move with me, and so if I don't use these tools myself, then they won't progress.
 
 However, this data store library is going to be written in TypeScript (of course with easy inclusion into Lua projects). Data storage is simply too important and too volatile to consider Lua.
 
