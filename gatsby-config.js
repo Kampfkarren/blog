@@ -5,6 +5,36 @@
  */
 
 module.exports = {
-  /* Your site config here */
-  plugins: [],
-}
+  siteMetadata: {
+    url: "https://blog.boyned.com",
+  },
+
+  plugins: [
+    `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-styled-components`,
+
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `articles`,
+        path: `${__dirname}/src/articles/`,
+      },
+    },
+
+    {
+      resolve: `gatsby-transformer-remark`,
+      options: {
+        plugins: [`gatsby-remark-prismjs`],
+      },
+    },
+
+    {
+      resolve: `gatsby-plugin-typescript`,
+      options: {
+        isTSX: true, // defaults to false
+        jsxPragma: `jsx`, // defaults to "React"
+        allExtensions: true, // defaults to false
+      },
+    },
+  ],
+};
