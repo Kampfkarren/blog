@@ -8,4 +8,6 @@ OUTPUT="$(pwd)/public"
 
 npx gatsby build
 
+bash ./bin/fix-meta.sh
+
 echo "blog.boyned.com" > "$OUTPUT/CNAME"
