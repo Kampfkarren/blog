@@ -197,17 +197,17 @@ Bikeshed<span class="token punctuation">.</span><span class="token function">set
     <span class="token function-variable function">deserialize</span><span class="token operator">:</span> <span class="token punctuation">(</span>data<span class="token operator">:</span> TSerialized<span class="token punctuation">)</span> <span class="token operator">=></span> <span class="token constant">T</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span></code></pre></div>
 <p>Quick tangent--I am unsure if this is the best way to do this. Rust has the ability to do something like:</p>
-<div class="gatsby-highlight" data-language="rs"><pre class="language-rs"><code class="language-rs">trait BikeshedDataStoreInformation {
-    // vvv This is the part I want!
-    type Data;
-    type Serialized;
+<div class="gatsby-highlight" data-language="rust"><pre class="language-rust"><code class="language-rust"><span class="token keyword">trait</span> <span class="token class-name">BikeshedDataStoreInformation</span> <span class="token punctuation">{</span>
+    <span class="token comment">// vvv This is the part I want!</span>
+    <span class="token keyword">type</span> <span class="token class-name">Data</span><span class="token punctuation">;</span>
+    <span class="token keyword">type</span> <span class="token class-name">Serialized</span><span class="token punctuation">;</span>
 
-    const fn key() -&gt; &amp;&#39;static str;
+    <span class="token keyword">const</span> <span class="token keyword">fn</span> <span class="token function-definition function">key</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token operator">&amp;</span><span class="token lifetime-annotation symbol">'static</span> <span class="token keyword">str</span><span class="token punctuation">;</span>
 
-    fn default() -&gt; Self::Data;
-    fn serialize(data: Self::Data) -&gt; Self::Serialized;
-    fn deserialize(data: Self::Serialized) -&gt; Self::Deserialized;
-}</code></pre></div>
+    <span class="token keyword">fn</span> <span class="token function-definition function">default</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">Data</span><span class="token punctuation">;</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">serialize</span><span class="token punctuation">(</span>data<span class="token punctuation">:</span> <span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">Data</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">Serialized</span><span class="token punctuation">;</span>
+    <span class="token keyword">fn</span> <span class="token function-definition function">deserialize</span><span class="token punctuation">(</span>data<span class="token punctuation">:</span> <span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">Serialized</span><span class="token punctuation">)</span> <span class="token punctuation">-></span> <span class="token keyword">Self</span><span class="token punctuation">::</span><span class="token class-name">Deserialized</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span></code></pre></div>
 <p>However, as far as I know, TypeScript has no way of doing this, so you'll just have to do something like retrieving the types from <code class="language-text">const InventoryStore: BikeshedDataStoreInformation&lt;Item[], number[]&gt;</code>, but then also need to support for data stores that don't have serializers...maybe <code class="language-text">never</code>? I don't know. Tangent over.</p>
 <p>Anyway, the old migrations had a problem where your migrations wouldn't be able to even compile without using tricks like <code class="language-text">unknown</code>. Consider the old data implementation, but in TS.</p>
 <div class="gatsby-highlight" data-language="ts"><pre class="language-ts"><code class="language-ts"><span class="token keyword">type</span> <span class="token class-name">OldItem</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
