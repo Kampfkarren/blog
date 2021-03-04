@@ -30,7 +30,7 @@ const Content = styled.div`
   padding: 1% 3%;
 
   max-width: 850px;
-  width: calc(100% - 160px);
+  width: calc(100% - 20px);
 `;
 
 const useSiteMetadata = () => {
