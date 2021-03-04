@@ -57,7 +57,7 @@ export const Layout: React.FC<{
     author: string;
     published_time: string;
   }>;
-}> = ({ title, children, meta }) => {
+}> = ({ title, children, meta, location }) => {
   const { url } = useSiteMetadata();
 
   return (
