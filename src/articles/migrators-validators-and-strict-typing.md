@@ -5,7 +5,7 @@ date: "2021-03-03"
 
 # Migrations, validators, and strict typing
 
-In [Thoughts and Regrets on DataStore2, and the path forward](/@boyned/HJ0EYWvM_), there are two features that have been pointed out to me as being contradictory.
+In [Thoughts and Regrets on DataStore2, and the path forward](/articles/thoughts-and-regrets-on-datastore2/), there are two features that have been pointed out to me as being contradictory.
 
 - Validators (which validate a data store's value during `:set()`)
 - Automatic migrations
