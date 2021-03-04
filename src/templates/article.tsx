@@ -2,6 +2,7 @@ import React from "react";
 import { graphql, Link } from "gatsby";
 import { Layout } from "../components/layout";
 import styled from "styled-components";
+import { Utterances } from "../components/utterances";
 
 export const query = graphql`
   query($slug: String!) {
@@ -62,6 +63,8 @@ const Article: React.FC<{
         <hr />
 
         <Link to="/">Back to blog</Link>
+
+        <Utterances />
       </StyledArticle>
     </Layout>
   );
