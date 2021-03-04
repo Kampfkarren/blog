@@ -9,6 +9,6 @@ OUTPUT="$(pwd)/public"
 npx gatsby build
 
 # Remove Helmet's excess tags to fix Twitter cards
-find $OUTPUT -name "*.html" -print0 | xargs -0 sed -i '' -e 's/data-react-helmet="true"//g'
+find $OUTPUT -name "*.html" -print0 | xargs -0 sed -i '' -e 's/data-react-helmet="true"//g' || true
 
 echo "blog.boyned.com" > "$OUTPUT/CNAME"
