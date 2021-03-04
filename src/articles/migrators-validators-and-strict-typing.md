@@ -179,18 +179,18 @@ Something that creates data stores (for replacement) might become:
 ```lua
 local function itemsToInventory(migrator)
     return migrator
-        :get("Inventory")
-        :andThen(function(inventory)
+        :get("Items")
+        :andThen(function(items)
             return {
                 migrators.action.createDataStore(
                     "Inventory",
-                    inventory,
+                    items,
                     t.array(t.strictInterface({
                         Id = t.number,
                     }))
                 ),
 
-                migrations.action.deleteDataStore("Inventory")
+                migrations.action.deleteDataStore("Items")
             }
         end)
 end
