@@ -7,6 +7,7 @@ import { Utterances } from "../components/utterances";
 export const query = graphql`
   query($slug: String!) {
     markdownRemark(fields: { slug: { eq: $slug } }) {
+      excerpt
       html
       frontmatter {
         date
@@ -23,6 +24,7 @@ const Article: React.FC<{
         date: string;
         title: string;
       };
+      excerpt: string;
       html: string;
     };
   };
@@ -36,6 +38,7 @@ const Article: React.FC<{
       location={location}
       title={markdown.frontmatter.title}
       meta={{
+        description: data.markdownRemark.excerpt,
         published_time: data.markdownRemark.frontmatter.date,
       }}
     >

@@ -55,6 +55,7 @@ export const Layout: React.FC<{
   title: string;
   meta?: Partial<{
     author: string;
+    description: string;
     published_time: string;
   }>;
 }> = ({ title, children, meta, location }) => {
@@ -71,6 +72,10 @@ export const Layout: React.FC<{
         <meta property="og:type" content="article" />
         <meta property="og:url" content={url + location.pathname} />
         <meta property="og:image" content="/emblem.png" />
+
+        {meta?.description && (
+          <meta property="og:description" content={meta.description} />
+        )}
 
         {meta?.published_time && (
           <meta
