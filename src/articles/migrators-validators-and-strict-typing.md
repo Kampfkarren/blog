@@ -231,7 +231,7 @@ interface BikeshedDataStoreInformation<T, TSerialized> {
 
 Quick tangent--I am unsure if this is the best way to do this. Rust has the ability to do something like:
 
-```rs
+```rust
 trait BikeshedDataStoreInformation {
     // vvv This is the part I want!
     type Data;
