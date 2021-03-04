@@ -270,7 +270,7 @@ function namesToIds(dataStore: BikeshedApi) -> Promise<void> {
 }
 ```
 
-The problem here is in our `update` function. `update` is defined as `update(callback: (oldData: T) => T): Promise<void>`. Meaning, it takes T (in this case OldItem[]) and expects T to come out. Instead, we are returning `{ Id: number }[]`. This would be frustrating with TypeScript.
+The problem here is in our `update` function. `update` is defined as `update(callback: (oldData: T) => T): Promise<void>`. Meaning, it takes T (in this case `OldItem[]`) and expects T to come out. Instead, we are returning `{ Id: number }[]`. This would be frustrating with TypeScript.
 
 However, with my proposal, these types can now be separated better. Let's consider the remake.
 
