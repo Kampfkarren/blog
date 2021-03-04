@@ -16,20 +16,6 @@ export const query = graphql`
   }
 `;
 
-const StyledArticle = styled.div`
-  background-color: #eee;
-  background-image: radial-gradient(#ddd 3%, transparent 20%),
-    radial-gradient(#bbb 3%, transparent 20%);
-  background-position: 0 0, 50px 50px;
-  background-size: 10px 10px;
-  margin: auto;
-  margin-top: 1em;
-  padding: 1% 3%;
-
-  max-width: 850px;
-  width: calc(100% - 160px);
-`;
-
 const Article: React.FC<{
   data: {
     markdownRemark: {
@@ -53,19 +39,17 @@ const Article: React.FC<{
         published_time: data.markdownRemark.frontmatter.date,
       }}
     >
-      <StyledArticle>
-        <div
-          dangerouslySetInnerHTML={{
-            __html: markdown.html,
-          }}
-        />
+      <div
+        dangerouslySetInnerHTML={{
+          __html: markdown.html,
+        }}
+      />
 
-        <hr />
+      <hr />
 
-        <Link to="/">Back to blog</Link>
+      <Link to="/">Back to blog</Link>
 
-        <Utterances />
-      </StyledArticle>
+      <Utterances />
     </Layout>
   );
 };

@@ -19,6 +19,20 @@ const GlobalStyle = createGlobalStyle`
   }
 `;
 
+const Content = styled.div`
+  background-color: #eee;
+  background-image: radial-gradient(#ddd 3%, transparent 20%),
+    radial-gradient(#bbb 3%, transparent 20%);
+  background-position: 0 0, 50px 50px;
+  background-size: 10px 10px;
+  margin: auto;
+  margin-top: 1em;
+  padding: 1% 3%;
+
+  max-width: 850px;
+  width: calc(100% - 160px);
+`;
+
 const useSiteMetadata = () => {
   const { site } = useStaticQuery(
     graphql`
@@ -35,7 +49,9 @@ const useSiteMetadata = () => {
 };
 
 export const Layout: React.FC<{
-  location: Location;
+  location: {
+    pathname: string;
+  };
   title: string;
   meta?: Partial<{
     author: string;
@@ -68,7 +84,7 @@ export const Layout: React.FC<{
 
       <Header />
 
-      {children}
+      <Content>{children}</Content>
     </Main>
   );
 };
