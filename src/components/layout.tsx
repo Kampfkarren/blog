@@ -95,6 +95,8 @@ export const Layout: React.FC<{
 
         <meta name="twitter:card" content="summary" />
         <meta name="twitter:title" content={`${title} - boyned's blog`} />
+        <meta name="twitter:description" content={meta?.description || ""} />
+        <meta name="twitter:image" content={`${url}/emblem.png`} />
       </Helmet>
 
       <Header />
