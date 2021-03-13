@@ -1,0 +1,318 @@
+<!DOCTYPE html><html><head><style data-href="/styles.b185ec8547dc645037f8.css" id="gatsby-global-css">code[class*=language-],pre[class*=language-]{color:#000;background:none;font-family:Consolas,Monaco,Andale Mono,Ubuntu Mono,monospace;font-size:1em;text-align:left;white-space:pre;word-spacing:normal;word-break:normal;word-wrap:normal;line-height:1.5;-moz-tab-size:4;-o-tab-size:4;tab-size:4;-webkit-hyphens:none;-ms-hyphens:none;hyphens:none}pre[class*=language-]{position:relative;margin:.5em 0;overflow:visible;padding:0}pre[class*=language-]>code{position:relative;border-left:10px solid #358ccb;box-shadow:-1px 0 0 0 #358ccb,0 0 0 1px #dfdfdf;background-color:#fdfdfd;background-image:linear-gradient(transparent 50%,rgba(69,142,209,.04) 0);background-size:3em 3em;background-origin:content-box;background-attachment:local}code[class*=language-]{max-height:inherit;height:inherit;padding:0 1em;display:block;overflow:auto}:not(pre)>code[class*=language-],pre[class*=language-]{background-color:#fdfdfd;box-sizing:border-box;margin-bottom:1em}:not(pre)>code[class*=language-]{position:relative;padding:.2em;border-radius:.3em;color:#c92c2c;border:1px solid rgba(0,0,0,.1);display:inline;white-space:normal}pre[class*=language-]:after,pre[class*=language-]:before{content:"";z-index:-2;display:block;position:absolute;bottom:.75em;left:.18em;width:40%;height:20%;max-height:13em;box-shadow:0 13px 8px #979797;transform:rotate(-2deg)}pre[class*=language-]:after{right:.75em;left:auto;transform:rotate(2deg)}.token.block-comment,.token.cdata,.token.comment,.token.doctype,.token.prolog{color:#7d8b99}.token.punctuation{color:#5f6364}.token.boolean,.token.constant,.token.deleted,.token.function-name,.token.number,.token.property,.token.symbol,.token.tag{color:#c92c2c}.token.attr-name,.token.builtin,.token.char,.token.function,.token.inserted,.token.selector,.token.string{color:#2f9c0a}.token.entity,.token.operator,.token.url,.token.variable{color:#a67f59;background:hsla(0,0%,100%,.5)}.token.atrule,.token.attr-value,.token.class-name,.token.keyword{color:#1990b8}.token.important,.token.regex{color:#e90}.language-css .token.string,.style .token.string{color:#a67f59;background:hsla(0,0%,100%,.5)}.token.important{font-weight:400}.token.bold{font-weight:700}.token.italic{font-style:italic}.token.entity{cursor:help}.token.namespace{opacity:.7}@media screen and (max-width:767px){pre[class*=language-]:after,pre[class*=language-]:before{bottom:14px;box-shadow:none}}pre[class*=language-].line-numbers.line-numbers{padding-left:0}pre[class*=language-].line-numbers.line-numbers code{padding-left:3.8em}pre[class*=language-].line-numbers.line-numbers .line-numbers-rows{left:0}pre[class*=language-][data-line]{padding-top:0;padding-bottom:0;padding-left:0}pre[data-line] code{position:relative;padding-left:4em}pre .line-highlight{margin-top:0}@font-face{font-family:M PLUS\ 1p;font-style:normal;font-weight:400;src:local(""),url(/fonts/m-plus-1p-v19-latin-regular.woff2) format("woff2"),url(/fonts/m-plus-1p-v19-latin-regular.woff) format("woff")}</style><meta name="generator" content="Gatsby 3.0.1"/><title data-react-helmet="true">Adventures in ECS - boyned&#x27;s blog</title><meta data-react-helmet="true" charSet="utf-8"/><meta data-react-helmet="true" http-equiv="x-ua-compatible" content="ie=edge"/><meta data-react-helmet="true" name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/><meta data-react-helmet="true" property="og:title" content="Adventures in ECS - boyned&#x27;s blog"/><meta data-react-helmet="true" property="og:type" content="article"/><meta data-react-helmet="true" property="og:url" content="https://blog.boyned.com/articles/adventures-in-ecs/"/><meta data-react-helmet="true" property="og:image" content="https://blog.boyned.com/emblem.png"/><meta data-react-helmet="true" property="og:description" content="The sort-of-secret project I&#x27;ve been working on is built in ECS. I haven&#x27;t released it yet, so I can&#x27;t yet recommend or not recommend it…"/><meta data-react-helmet="true" property="og:article:published_time" content="2021-03-12"/><meta data-react-helmet="true" property="og:article:author" content="boyned"/><meta data-react-helmet="true" name="twitter:card" content="summary"/><meta data-react-helmet="true" name="twitter:title" content="Adventures in ECS - boyned&#x27;s blog"/><meta data-react-helmet="true" name="twitter:description" content="The sort-of-secret project I&#x27;ve been working on is built in ECS. I haven&#x27;t released it yet, so I can&#x27;t yet recommend or not recommend it…"/><meta data-react-helmet="true" name="twitter:image" content="https://blog.boyned.com/emblem.png"/><style data-styled="" data-styled-version="5.2.1">.evPjbD{text-align:center;}/*!sc*/
+data-styled.g1[id="header__StyledHeader-ehg0ch-0"]{content:"evPjbD,"}/*!sc*/
+.cZwfhW{color:white;display:block;font-weight:bolder;font-size:2em;-webkit-text-decoration:none;text-decoration:none;-webkit-animation:cxWZgL 0.8s alternate infinite;animation:cxWZgL 0.8s alternate infinite;}/*!sc*/
+data-styled.g2[id="header__TitleLink-ehg0ch-1"]{content:"cZwfhW,"}/*!sc*/
+.dyPCyi{font-family:"M PLUS 1p";}/*!sc*/
+data-styled.g3[id="layout__Main-ccgz52-0"]{content:"dyPCyi,"}/*!sc*/
+body{background:repeating-linear-gradient(13deg, hsl(31,96%,85%) 0 50px, hsl(31,96%,90%) 50px 100px);background-size:100px 100px;}/*!sc*/
+data-styled.g4[id="sc-global-bSvrCR1"]{content:"sc-global-bSvrCR1,"}/*!sc*/
+.fCvAzx{background-color:#eee;background-image:radial-gradient(#ddd 3%,transparent 20%),radial-gradient(#bbb 3%,transparent 20%);background-position:0 0,50px 50px;background-size:10px 10px;margin:auto;margin-top:1em;padding:1% 3%;max-width:850px;width:calc(100% - 20px);}/*!sc*/
+data-styled.g5[id="layout__Content-ccgz52-1"]{content:"fCvAzx,"}/*!sc*/
+@-webkit-keyframes cxWZgL{0%{text-shadow:0 -0.05em 0.2em #FFF,0.01em -0.02em 0.15em #FE0,0.01em -0.05em 0.15em #FC0,0.02em -0.15em 0.2em #F90,0.04em -0.20em 0.3em #F70,0.05em -0.25em 0.4em #F70,0.06em -0.2em 0.9em #F50,0.1em -0.1em 1.0em #F40;}25%{text-shadow:0 -0.05em 0.2em #FFF,0 -0.05em 0.17em #FE0,0.04em -0.12em 0.22em #FC0,0.04em -0.13em 0.27em #F90,0.05em -0.23em 0.33em #F70,0.07em -0.28em 0.47em #F70,0.1em -0.3em 0.8em #F50,0.1em -0.3em 0.9em #F40;}50%{text-shadow:0 -0.05em 0.2em #FFF,0.01em -0.02em 0.15em #FE0,0.01em -0.05em 0.15em #FC0,0.02em -0.15em 0.2em #F90,0.04em -0.20em 0.3em #F70,0.05em -0.25em 0.4em #F70,0.06em -0.2em 0.9em #F50,0.1em -0.1em 1.0em #F40;}75%{text-shadow:0 -0.05em 0.2em #FFF,0 -0.06em 0.18em #FE0,0.05em -0.15em 0.23em #FC0,0.05em -0.15em 0.3em #F90,0.07em -0.25em 0.4em #F70,0.09em -0.3em 0.5em #F70,0.1em -0.3em 0.9em #F50,0.1em -0.3em 1.0em #F40;}100%{text-shadow:0 -0.05em 0.2em #FFF,0.01em -0.02em 0.15em #FE0,0.01em -0.05em 0.15em #FC0,0.02em -0.15em 0.2em #F90,0.04em -0.20em 0.3em #F70,0.05em -0.25em 0.4em #F70,0.06em -0.2em 0.9em #F50,0.1em -0.1em 1.0em #F40;}}/*!sc*/
+@keyframes cxWZgL{0%{text-shadow:0 -0.05em 0.2em #FFF,0.01em -0.02em 0.15em #FE0,0.01em -0.05em 0.15em #FC0,0.02em -0.15em 0.2em #F90,0.04em -0.20em 0.3em #F70,0.05em -0.25em 0.4em #F70,0.06em -0.2em 0.9em #F50,0.1em -0.1em 1.0em #F40;}25%{text-shadow:0 -0.05em 0.2em #FFF,0 -0.05em 0.17em #FE0,0.04em -0.12em 0.22em #FC0,0.04em -0.13em 0.27em #F90,0.05em -0.23em 0.33em #F70,0.07em -0.28em 0.47em #F70,0.1em -0.3em 0.8em #F50,0.1em -0.3em 0.9em #F40;}50%{text-shadow:0 -0.05em 0.2em #FFF,0.01em -0.02em 0.15em #FE0,0.01em -0.05em 0.15em #FC0,0.02em -0.15em 0.2em #F90,0.04em -0.20em 0.3em #F70,0.05em -0.25em 0.4em #F70,0.06em -0.2em 0.9em #F50,0.1em -0.1em 1.0em #F40;}75%{text-shadow:0 -0.05em 0.2em #FFF,0 -0.06em 0.18em #FE0,0.05em -0.15em 0.23em #FC0,0.05em -0.15em 0.3em #F90,0.07em -0.25em 0.4em #F70,0.09em -0.3em 0.5em #F70,0.1em -0.3em 0.9em #F50,0.1em -0.3em 1.0em #F40;}100%{text-shadow:0 -0.05em 0.2em #FFF,0.01em -0.02em 0.15em #FE0,0.01em -0.05em 0.15em #FC0,0.02em -0.15em 0.2em #F90,0.04em -0.20em 0.3em #F70,0.05em -0.25em 0.4em #F70,0.06em -0.2em 0.9em #F50,0.1em -0.1em 1.0em #F40;}}/*!sc*/
+data-styled.g9[id="sc-keyframes-cxWZgL"]{content:"cxWZgL,"}/*!sc*/
+.hDXFNt{color:white;-webkit-filter:drop-shadow(3px 3px 3px black);filter:drop-shadow(3px 3px 3px black);}/*!sc*/
+data-styled.g10[id="header__StyledLinks-ehg0ch-2"]{content:"hDXFNt,"}/*!sc*/
+.eNBbfj{color:white;-webkit-text-decoration:none;text-decoration:none;}/*!sc*/
+data-styled.g11[id="header__StyledLink-ehg0ch-3"]{content:"eNBbfj,"}/*!sc*/
+</style><link as="script" rel="preload" href="/webpack-runtime-64c28a96b540963dc61c.js"/><link as="script" rel="preload" href="/framework-bee5b4b4fa37bec3e7c7.js"/><link as="script" rel="preload" href="/app-4fb613c1d4a1ca4aca13.js"/><link as="script" rel="preload" href="/commons-408cdbe71519a8639f61.js"/><link as="script" rel="preload" href="/component---src-templates-article-tsx-43a4beb6ffb6c5fd49dc.js"/><link as="fetch" rel="preload" href="/page-data/articles/adventures-in-ecs/page-data.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/sq/d/2428300253.json" crossorigin="anonymous"/><link as="fetch" rel="preload" href="/page-data/app-data.json" crossorigin="anonymous"/></head><body><div id="___gatsby"><div style="outline:none" tabindex="-1" id="gatsby-focus-wrapper"><div class="layout__Main-ccgz52-0 dyPCyi"><div class="header__StyledHeader-ehg0ch-0 evPjbD"><a class="header__TitleLink-ehg0ch-1 cZwfhW" href="/">boyned&#x27;s blog</a><div class="header__StyledLinks-ehg0ch-2 hDXFNt"><span><a href="https://twitter.com/Kampfkarren" class="header__StyledLink-ehg0ch-3 eNBbfj">Twitter</a> <!-- --> | </span><span><a href="https://github.com/Kampfkarren" class="header__StyledLink-ehg0ch-3 eNBbfj">GitHub</a> <!-- --> | </span><span><a href="https://ko-fi.com/boyned" class="header__StyledLink-ehg0ch-3 eNBbfj">Ko-fi</a> </span></div></div><div class="layout__Content-ccgz52-1 fCvAzx"><h1>Adventures in ECS</h1><div><p>The sort-of-secret project I've been working on is built in ECS. I haven't released it yet, so I can't yet recommend or not recommend it. What I can do, however, is talk about the problems I've had to solve while using it, which I think is much more interesting.</p>
+<h2>What is ECS?</h2>
+<p>ECS is a development paradigm based on three parts:</p>
+<ol>
+<li>Entities. Entities are a list of components with a unique ID. They do not contain any state or behavior of their own.</li>
+<li>Components. Components are pieces of data and state. They do not perform any behavior on their own.</li>
+<li>Systems. Systems perform all the behavior, and act on components, but do not contain any state of their own. They run every frame in a defined order.</li>
+</ol>
+<p>The benefits include better separation of behavior and data, as well as easily testable structures. You can simply create entities with components, and run a system's update function directly in tests. Plus some performance benefits that exist on languages closer to the hardware, like C++, that I'm not sure we as Roblox developers actually get.</p>
+<p>My setup matches this pretty exactly. I use Instances as entities, though I don't <em>need</em> to--I just thought it was a bit easier. I might end up regretting it later.</p>
+<p>Here's an example of what a character Instance's component setup looks like in my project (and I'm not even close to done):</p>
+<div class="gatsby-highlight" data-language="text"><pre class="language-text"><code class="language-text">Client: {
+   [&quot;AdjustHead&quot;] = {...},
+   [&quot;Animator&quot;] = {...},
+   [&quot;AnimatorState&quot;] = {...},
+   [&quot;CharacterAnimationWatcher&quot;] = {...},
+   [&quot;CollisionGroup&quot;] = {...},
+   [&quot;CollisionGroupState&quot;] = {...},
+   [&quot;CommandBuffer&quot;] = {...},
+   [&quot;Control&quot;] = {...},
+   [&quot;EntityId&quot;] = {...},
+   [&quot;Eye&quot;] = {...},
+   [&quot;Flags&quot;] = {...},
+   [&quot;Health&quot;] = {...},
+   [&quot;Hitboxes&quot;] = {...},
+   [&quot;HitboxesState&quot;] = {...},
+   [&quot;Loadout&quot;] = {...},
+   [&quot;PlayerSource&quot;] = {...},
+   [&quot;Spottable&quot;] = {...},
+   [&quot;Spotter&quot;] = {},
+   [&quot;Target&quot;] = {},
+   [&quot;Team&quot;] = {...},
+   [&quot;Weapon&quot;] = {...}
+}
+
+Server: {
+   [&quot;CommandBuffer&quot;] = {...},
+   [&quot;Health&quot;] = {...},
+   [&quot;HealthRegen&quot;] = {...},
+   [&quot;Hitboxes&quot;] = {...},
+   [&quot;Loadout&quot;] = {...},
+   [&quot;PlayerSource&quot;] = {...},
+   [&quot;Target&quot;] = {},
+   [&quot;Team&quot;] = {...},
+   [&quot;WatchDisappearanceState&quot;] = {...},
+   [&quot;Weapon&quot;] = {...}
+}</code></pre></div>
+<p>As you can see, it gets pretty granular, but it's all for a good purpose--<strong>it's <em>really</em> nice to use, and <em>really</em> reusable</strong>.</p>
+<h2>A basic system -- AdjustHead</h2>
+<p><code class="language-text">AdjustHead</code> is the name of the system that handles a player looking up and down, and their head matching where they're looking.</p>
+<p>I <em>could</em> have just gotten the local character, and matched its head, but that's a bad idea. First, it gives characters a weird "special" magic to them. Second, it makes it harder to write a test for, since now I need to create fake characters and bla bla bla. Third, who's to say this system will only ever update the local character! What if I make an ability that summons a bunch of decoys, and I want their heads to match too? Or, what if I have a character select screen? One of the best parts of ECS is how reusable everything is, so it would be a shame to go against that.</p>
+<p>Instead, I'm going to just create an <code class="language-text">AdjustHead</code> component. Here's what that looks like.</p>
+<div class="gatsby-highlight" data-language="lua"><pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> ReplicatedStorage <span class="token operator">=</span> game<span class="token punctuation">:</span><span class="token function">GetService</span><span class="token punctuation">(</span><span class="token string">"ReplicatedStorage"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">local</span> ComponentUtil <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span>ReplicatedStorage<span class="token punctuation">.</span>Libraries<span class="token punctuation">.</span>Components<span class="token punctuation">.</span>ComponentUtil<span class="token punctuation">)</span>
+<span class="token keyword">local</span> t <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span>ReplicatedStorage<span class="token punctuation">.</span>Vendor<span class="token punctuation">.</span>t<span class="token punctuation">)</span>
+
+<span class="token keyword">local</span> AdjustHead <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+AdjustHead<span class="token punctuation">.</span>Data <span class="token operator">=</span> <span class="token punctuation">{</span>
+	HeadBone <span class="token operator">=</span> t<span class="token punctuation">.</span><span class="token function">instanceIsA</span><span class="token punctuation">(</span><span class="token string">"Bone"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+AdjustHead<span class="token punctuation">.</span>ValidateInstance <span class="token operator">=</span> ComponentUtil<span class="token punctuation">.</span><span class="token function">HasComponentValidator</span><span class="token punctuation">(</span><span class="token string">"Eye"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">return</span> AdjustHead</code></pre></div>
+<p>As you can see, defining a component is very basic. Most of it is just validators, in theory I don't even <em>need</em> any of this, it's just nice to fail fast without something like TypeScript to support me.</p>
+<p>The <code class="language-text">Data</code> table lists every field that the component will have. When adding a component, this is validated upon (with <code class="language-text">t.strictInterface(component.Data)(data)</code>).</p>
+<p>The optional <code class="language-text">ValidateInstance</code> function is also used to validate that what I'm adding is valid. In this case I'm using a separate validator to match an <code class="language-text">Eye</code> component, but what is that?</p>
+<p>Well, that's a separate component. That looks like this:</p>
+<div class="gatsby-highlight" data-language="lua"><pre class="language-lua"><code class="language-lua"><span class="token comment">-- CLIENT uses this to know where an entity is looking through.</span>
+<span class="token keyword">local</span> ReplicatedStorage <span class="token operator">=</span> game<span class="token punctuation">:</span><span class="token function">GetService</span><span class="token punctuation">(</span><span class="token string">"ReplicatedStorage"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">local</span> t <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span>ReplicatedStorage<span class="token punctuation">.</span>Vendor<span class="token punctuation">.</span>t<span class="token punctuation">)</span>
+
+<span class="token keyword">local</span> Eye <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+Eye<span class="token punctuation">.</span>Data <span class="token operator">=</span> <span class="token punctuation">{</span>
+	<span class="token comment">-- In reality, anything with a CFrame</span>
+	Eye <span class="token operator">=</span> t<span class="token punctuation">.</span><span class="token function">union</span><span class="token punctuation">(</span>t<span class="token punctuation">.</span><span class="token function">instanceIsA</span><span class="token punctuation">(</span><span class="token string">"Camera"</span><span class="token punctuation">)</span><span class="token punctuation">,</span> t<span class="token punctuation">.</span><span class="token function">instanceIsA</span><span class="token punctuation">(</span><span class="token string">"BasePart"</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+
+<span class="token keyword">return</span> Eye</code></pre></div>
+<p>This is used to abstract any entity as having an "eye". This is used for a feature we have that works with both your personal camera, and when applied on other players, will just use the CFrame of their root part.</p>
+<p>Inside the piece of code that creates characters, we just have this:</p>
+<div class="gatsby-highlight" data-language="lua"><pre class="language-lua"><code class="language-lua">Components<span class="token punctuation">.</span><span class="token function">AddComponent</span><span class="token punctuation">(</span>character<span class="token punctuation">,</span> <span class="token string">"Eye"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    Eye <span class="token operator">=</span> Workspace<span class="token punctuation">.</span>CurrentCamera<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+Components<span class="token punctuation">.</span><span class="token function">AddComponent</span><span class="token punctuation">(</span>character<span class="token punctuation">,</span> <span class="token string">"AdjustHead"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    <span class="token comment">-- This should use a FindFirstChild wrapper, but that's for another day.</span>
+    HeadBone <span class="token operator">=</span> character<span class="token punctuation">.</span>RootPart<span class="token punctuation">.</span>Lower<span class="token punctuation">.</span>Upper<span class="token punctuation">.</span>Neck<span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre></div>
+<p>And..that's it! Our character now has the component.</p>
+<p>The next step is to create the system. That's thankfully pretty easy.</p>
+<div class="gatsby-highlight" data-language="lua"><pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> ReplicatedStorage <span class="token operator">=</span> game<span class="token punctuation">:</span><span class="token function">GetService</span><span class="token punctuation">(</span><span class="token string">"ReplicatedStorage"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">local</span> Components <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span>ReplicatedStorage<span class="token punctuation">.</span>Libraries<span class="token punctuation">.</span>Components<span class="token punctuation">)</span>
+<span class="token keyword">local</span> createConstant <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span>ReplicatedStorage<span class="token punctuation">.</span>Libraries<span class="token punctuation">.</span>createConstant<span class="token punctuation">)</span>
+
+<span class="token keyword">local</span> AdjustHead <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token comment">--- The maximum angle the head can look, up and down.</span>
+<span class="token keyword">local</span> getAdjustHeadMaxAngle <span class="token operator">=</span> <span class="token function">createConstant</span><span class="token punctuation">(</span><span class="token string">"AdjustHeadMaxAngle"</span><span class="token punctuation">,</span> <span class="token number">50</span><span class="token punctuation">)</span>
+
+<span class="token keyword">function</span> AdjustHead<span class="token punctuation">.</span><span class="token function">Update</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">for</span> entity<span class="token punctuation">,</span> adjustHeadComponent <span class="token keyword">in</span> <span class="token function">pairs</span><span class="token punctuation">(</span>Components<span class="token punctuation">.</span><span class="token function">GetInstancesWith</span><span class="token punctuation">(</span><span class="token string">"AdjustHead"</span><span class="token punctuation">)</span><span class="token punctuation">)</span> <span class="token keyword">do</span>
+    <span class="token keyword">local</span> eyeComponent <span class="token operator">=</span> Components<span class="token punctuation">.</span><span class="token function">GetComponent</span><span class="token punctuation">(</span>entity<span class="token punctuation">,</span> <span class="token string">"Eye"</span><span class="token punctuation">)</span>
+    <span class="token keyword">local</span> look <span class="token operator">=</span> eyeComponent<span class="token punctuation">.</span>Eye<span class="token punctuation">.</span>CFrame<span class="token punctuation">.</span>LookVector
+    <span class="token keyword">local</span> cameraAngle <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">atan2</span><span class="token punctuation">(</span>look<span class="token punctuation">.</span>Y<span class="token punctuation">,</span> math<span class="token punctuation">.</span><span class="token function">sqrt</span><span class="token punctuation">(</span>look<span class="token punctuation">.</span>X <span class="token operator">^</span> <span class="token number">2</span> <span class="token operator">+</span> look<span class="token punctuation">.</span>Z <span class="token operator">^</span> <span class="token number">2</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+
+    <span class="token keyword">local</span> angle <span class="token operator">=</span> math<span class="token punctuation">.</span><span class="token function">clamp</span><span class="token punctuation">(</span>
+      math<span class="token punctuation">.</span><span class="token function">deg</span><span class="token punctuation">(</span>cameraAngle<span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token operator">-</span><span class="token function">getAdjustHeadMaxAngle</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+      <span class="token function">getAdjustHeadMaxAngle</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">)</span>
+
+    adjustHeadComponent<span class="token punctuation">.</span>HeadBone<span class="token punctuation">.</span>Orientation <span class="token operator">=</span> Vector3<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span>angle<span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span>
+  <span class="token keyword">end</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">return</span> AdjustHead</code></pre></div>
+<p><code class="language-text">.Update</code> is ran every <code class="language-text">Heartbeat</code>, and will just look for components with AdjustHead and update the bone. And...it works!</p>
+<h3>Every Heartbeat?!?</h3>
+<p>Yes! I run lots of systems every Heartbeat. It's not slow! Every system is wrapped in profiling stuff, and they all run extremely fast without much tricks. Pretty much every function on <code class="language-text">Components</code> (such as <code class="language-text">Components.GetInstancesWith</code>) is cached. That one in specific is implemented simply as:</p>
+<div class="gatsby-highlight" data-language="lua"><pre class="language-lua"><code class="language-lua"><span class="token keyword">function</span> Components<span class="token punctuation">.</span><span class="token function">GetInstancesWith</span><span class="token punctuation">(</span>componentName<span class="token punctuation">)</span>
+	<span class="token function">assertComponentExists</span><span class="token punctuation">(</span>componentName<span class="token punctuation">)</span>
+
+	<span class="token keyword">return</span> componentsToInstances<span class="token punctuation">[</span>componentName<span class="token punctuation">]</span> <span class="token keyword">or</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token keyword">end</span></code></pre></div>
+<p>...a nice O(1) operation.</p>
+<p>Doing ECS in this way is really a test of how hard you're willing to die for "don't prematurely optimize", because the benefits are vast, and I still get ~400 FPS!</p>
+<h2>Components are immutable</h2>
+<p>Components are expected to be handled completely immutably. That means that:</p>
+<div class="gatsby-highlight" data-language="lua"><pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> healthComponent <span class="token operator">=</span> Components<span class="token punctuation">.</span><span class="token function">GetComponent</span><span class="token punctuation">(</span>entity<span class="token punctuation">,</span> <span class="token string">"Health"</span><span class="token punctuation">)</span>
+healthComponent<span class="token punctuation">.</span>Health <span class="token operator">=</span> <span class="token number">50</span></code></pre></div>
+<p>...is very bad! This gives us some great benefits, notably being that we can pass components to whatever needs them without having to perform copies, as well as making it completely free to handle in Roact (which also expects immutable data). It also completely skips over our validators.</p>
+<p>The equivalent to this is:</p>
+<div class="gatsby-highlight" data-language="lua"><pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> healthComponent <span class="token operator">=</span> Components<span class="token punctuation">.</span><span class="token function">GetComponent</span><span class="token punctuation">(</span>entity<span class="token punctuation">,</span> <span class="token string">"Health"</span><span class="token punctuation">)</span>
+Components<span class="token punctuation">.</span><span class="token function">ReplaceComponent</span><span class="token punctuation">(</span>entity<span class="token punctuation">,</span> <span class="token string">"Health"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+    Health <span class="token operator">=</span> <span class="token number">50</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span></code></pre></div>
+<p>This performs a simple patch, meaning that any other values that Health has (such as MaxHealth) are preserved.</p>
+<h2>Replication</h2>
+<p>ECS also works amazingly with replication. Because systems are expected to be stateless, you can just replicate components from the network (I do this just with folders and value objects right now, though I want to move to attributes) and all your code will work perfectly fine. This maps pretty great with client prediction, too. It lets me, for free, run the exact same code for shooting effects on your own end as shooting effects from other players, just by putting in the same command (explaining the command buffer component is something I'll leave to a separate article).</p>
+<p>This was one of the selling points of <a href="https://github.com/evaera/Fabric">Fabric</a>, which is ECS inspired (though explicitly states it is <em>not</em> an ECS). I haven't used it yet (and don't plan on doing so for this project), but it's a very nice behavior to have!</p>
+<h2>System state</h2>
+<p>Sometimes, systems need state. ECS says they shouldn't store that state on their own however, so what do we do?</p>
+<p>Well, let's think of a real example. In the project, we have a "Sprinting" system. This handles the visual effects of a sprinting entity, such as cartoony smoke particles.</p>
+<p>The problem comes with how to make sure we cleanup the smoke particles properly.</p>
+<p>Here's the first version of the system:</p>
+<div class="gatsby-highlight" data-language="lua"><pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> Sprinting <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+Sprinting<span class="token punctuation">.</span>__index <span class="token operator">=</span> Sprinting
+
+<span class="token keyword">function</span> Sprinting<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  <span class="token keyword">return</span> <span class="token function">setmetatable</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    sprintingEffects <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span><span class="token punctuation">,</span>
+  <span class="token punctuation">}</span><span class="token punctuation">,</span> Sprinting<span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">function</span> Sprinting<span class="token punctuation">:</span><span class="token function">StopSprinting</span><span class="token punctuation">(</span>entity<span class="token punctuation">)</span>
+  Components<span class="token punctuation">.</span><span class="token function">RemoveComponent</span><span class="token punctuation">(</span>entity<span class="token punctuation">,</span> <span class="token string">"Sprinting"</span><span class="token punctuation">)</span>
+
+  <span class="token keyword">local</span> effect <span class="token operator">=</span> self<span class="token punctuation">.</span>sprintingEffects<span class="token punctuation">[</span>entity<span class="token punctuation">]</span>
+  <span class="token keyword">if</span> effect <span class="token operator">==</span> <span class="token keyword">nil</span> <span class="token keyword">then</span>
+    <span class="token keyword">return</span>
+  <span class="token keyword">end</span>
+
+  effect<span class="token punctuation">:</span><span class="token function">DoCleaning</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  self<span class="token punctuation">.</span>sprintingEffects<span class="token punctuation">[</span>entity<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token keyword">nil</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">function</span> Sprinting<span class="token punctuation">:</span><span class="token function">Update</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  Components<span class="token punctuation">.</span><span class="token function">FilterInstancesWith</span><span class="token punctuation">(</span><span class="token string">"Sprinting"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>entity<span class="token punctuation">,</span> sprintingComponent<span class="token punctuation">)</span>
+    <span class="token keyword">local</span> health <span class="token operator">=</span> Components<span class="token punctuation">.</span><span class="token function">GetComponent</span><span class="token punctuation">(</span>entity<span class="token punctuation">,</span> <span class="token string">"Health"</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> health <span class="token operator">~=</span> <span class="token keyword">nil</span> <span class="token keyword">and</span> health<span class="token punctuation">.</span>Health <span class="token operator">&lt;=</span> <span class="token number">0</span> <span class="token keyword">then</span>
+      self<span class="token punctuation">:</span><span class="token function">StopSprinting</span><span class="token punctuation">(</span>entity<span class="token punctuation">)</span>
+      <span class="token keyword">return</span> <span class="token keyword">false</span>
+    <span class="token keyword">end</span>
+
+    <span class="token keyword">if</span> sprintingComponent<span class="token punctuation">.</span>Stopping <span class="token operator">~=</span> <span class="token keyword">nil</span>
+      <span class="token keyword">and</span> TaskScheduler<span class="token punctuation">.</span>Clock <span class="token operator">>=</span> sprintingComponent<span class="token punctuation">.</span>Stopping
+    <span class="token keyword">then</span>
+      self<span class="token punctuation">:</span><span class="token function">StopSprinting</span><span class="token punctuation">(</span>entity<span class="token punctuation">)</span>
+      <span class="token keyword">return</span> <span class="token keyword">false</span>
+    <span class="token keyword">end</span>
+
+    <span class="token comment">-- Start sprinting</span>
+    <span class="token keyword">if</span> self<span class="token punctuation">.</span>sprintingEffects<span class="token punctuation">[</span>entity<span class="token punctuation">]</span> <span class="token operator">==</span> <span class="token keyword">nil</span> <span class="token keyword">then</span>
+      <span class="token keyword">local</span> sprintAttachment <span class="token operator">=</span> SprintAttachment<span class="token punctuation">:</span><span class="token function">Clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      sprintAttachment<span class="token punctuation">.</span>Parent <span class="token operator">=</span> entity<span class="token punctuation">.</span>PrimaryPart
+
+      <span class="token keyword">local</span> maid <span class="token operator">=</span> Maid<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      maid<span class="token punctuation">:</span><span class="token function">GiveTaskParticleEffect</span><span class="token punctuation">(</span>sprintAttachment<span class="token punctuation">.</span>SprintParticle<span class="token punctuation">)</span>
+
+      Components<span class="token punctuation">.</span><span class="token function">AddComponent</span><span class="token punctuation">(</span>sprintAttachment<span class="token punctuation">,</span> <span class="token string">"NeedsChildren"</span><span class="token punctuation">)</span>
+
+      self<span class="token punctuation">.</span>sprintingEffects<span class="token punctuation">[</span>entity<span class="token punctuation">]</span> <span class="token operator">=</span> maid
+    <span class="token keyword">end</span>
+
+    <span class="token keyword">return</span> <span class="token keyword">true</span>
+  <span class="token keyword">end</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">return</span> Sprinting</code></pre></div>
+<p>The important part to note here is the structure we've created. We have the "one true class" pattern of <code class="language-text">__index</code>, <code class="language-text">self</code>, <code class="language-text">setmetatable</code>, etc. This stinks--this service now has internal-only state, which makes it harder to test. Plus, I really dislike metatables. I find them to make debugging needlessly more confusing.</p>
+<p>There's also a problem here where, if we remove the <code class="language-text">Sprinting</code> component, then the sprinting particles won't actually go away! The system expects that it will be the only thing to manage <code class="language-text">Sprinting</code> components, which is an assumption that might not last.</p>
+<p>So, what's the solution here? Well, let's take a step back and figure out what its doing. The internal state is of sprinting effects. They're maids (an object that provides an easy way to destroy everything inside it) that contain the sprinting particle.</p>
+<p>The solution is what's called a "system state component". These are components that simply <strong>don't remove themselves when the entity is destroyed</strong>. This is important, as it means that we can be confident that we'll be given time to cleanup the stuff we've created.</p>
+<p>The new <code class="language-text">SprintingEffectsState</code> component looks like this:</p>
+<div class="gatsby-highlight" data-language="lua"><pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> ReplicatedStorage <span class="token operator">=</span> game<span class="token punctuation">:</span><span class="token function">GetService</span><span class="token punctuation">(</span><span class="token string">"ReplicatedStorage"</span><span class="token punctuation">)</span>
+
+<span class="token keyword">local</span> t <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span>ReplicatedStorage<span class="token punctuation">.</span>Vendor<span class="token punctuation">.</span>t<span class="token punctuation">)</span>
+
+<span class="token keyword">local</span> SprintingEffectsState <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+SprintingEffectsState<span class="token punctuation">.</span>Data <span class="token operator">=</span> <span class="token punctuation">{</span>
+	Effects <span class="token operator">=</span> t<span class="token punctuation">.</span><span class="token function">instanceIsA</span><span class="token punctuation">(</span><span class="token string">"Attachment"</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span>
+
+SprintingEffectsState<span class="token punctuation">.</span>SystemStateComponent <span class="token operator">=</span> <span class="token keyword">true</span>
+
+<span class="token keyword">return</span> SprintingEffectsState</code></pre></div>
+<p>This component maps correctly onto what we needed the internal state for last time--it managed the particle effects, and so we just need to store the effects object.</p>
+<p>Now, let's update our Sprinting component:</p>
+<div class="gatsby-highlight" data-language="lua"><pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> Sprinting <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token punctuation">}</span>
+
+<span class="token keyword">function</span> Sprinting<span class="token punctuation">.</span><span class="token function">Update</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+  Components<span class="token punctuation">.</span><span class="token function">FilterInstancesWith</span><span class="token punctuation">(</span><span class="token string">"Sprinting"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>entity<span class="token punctuation">,</span> sprintingComponent<span class="token punctuation">)</span>
+    <span class="token keyword">local</span> health <span class="token operator">=</span> Components<span class="token punctuation">.</span><span class="token function">GetComponent</span><span class="token punctuation">(</span>entity<span class="token punctuation">,</span> <span class="token string">"Health"</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> health <span class="token operator">~=</span> <span class="token keyword">nil</span> <span class="token keyword">and</span> health<span class="token punctuation">.</span>Health <span class="token operator">&lt;=</span> <span class="token number">0</span> <span class="token keyword">then</span>
+      <span class="token comment">-- NOTICE: We removed :StopSprinting(). That's because it forced our system</span>
+      <span class="token comment">-- to assume that it would be the only thing to ever remove a Sprinting</span>
+      <span class="token comment">-- component. Now that our system uses an external state component, we can</span>
+      <span class="token comment">-- be confident that no matter how a Sprinting component is removed, it</span>
+      <span class="token comment">-- will clean up properly.</span>
+      Components<span class="token punctuation">.</span><span class="token function">RemoveComponent</span><span class="token punctuation">(</span>entity<span class="token punctuation">,</span> <span class="token string">"Sprinting"</span><span class="token punctuation">)</span>
+      <span class="token keyword">return</span> <span class="token keyword">false</span>
+    <span class="token keyword">end</span>
+
+    <span class="token keyword">if</span> sprintingComponent<span class="token punctuation">.</span>Stopping <span class="token operator">~=</span> <span class="token keyword">nil</span> <span class="token keyword">and</span> TaskScheduler<span class="token punctuation">.</span>Clock <span class="token operator">>=</span> sprintingComponent<span class="token punctuation">.</span>Stopping <span class="token keyword">then</span>
+      Components<span class="token punctuation">.</span><span class="token function">RemoveComponent</span><span class="token punctuation">(</span>entity<span class="token punctuation">,</span> <span class="token string">"Sprinting"</span><span class="token punctuation">)</span>
+      <span class="token keyword">return</span> <span class="token keyword">false</span>
+    <span class="token keyword">end</span>
+
+    <span class="token comment">-- Start sprinting</span>
+    <span class="token keyword">local</span> sprintingState <span class="token operator">=</span> Components<span class="token punctuation">.</span><span class="token function">GetComponent</span><span class="token punctuation">(</span>entity<span class="token punctuation">,</span> <span class="token string">"SprintingEffectsState"</span><span class="token punctuation">)</span>
+    <span class="token keyword">if</span> sprintingState <span class="token operator">==</span> <span class="token keyword">nil</span> <span class="token keyword">then</span>
+      <span class="token keyword">local</span> sprintAttachment <span class="token operator">=</span> SprintAttachment<span class="token punctuation">:</span><span class="token function">Clone</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+      sprintAttachment<span class="token punctuation">.</span>Parent <span class="token operator">=</span> entity<span class="token punctuation">.</span>PrimaryPart
+
+      <span class="token comment">-- NOTICE: This used to create a Maid. Now it just stores the actual important</span>
+      <span class="token comment">-- data, that being the effects themselves (stored inside an attachment).</span>
+      sprintingState <span class="token operator">=</span> Components<span class="token punctuation">.</span><span class="token function">AddComponent</span><span class="token punctuation">(</span>entity<span class="token punctuation">,</span> <span class="token string">"SprintingEffectsState"</span><span class="token punctuation">,</span> <span class="token punctuation">{</span>
+        Effects <span class="token operator">=</span> sprintAttachment<span class="token punctuation">,</span>
+      <span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+      Components<span class="token punctuation">.</span><span class="token function">AddComponent</span><span class="token punctuation">(</span>sprintAttachment<span class="token punctuation">,</span> <span class="token string">"NeedsChildren"</span><span class="token punctuation">)</span>
+    <span class="token keyword">end</span>
+
+    <span class="token keyword">return</span> <span class="token keyword">true</span>
+  <span class="token keyword">end</span><span class="token punctuation">)</span>
+
+  <span class="token comment">-- NOTICE: This is where we do the magic of cleaning up effects properly.</span>
+  <span class="token comment">-- Because system state components can only ever be destroyed by a system</span>
+  <span class="token comment">-- and not through normal entity deletion, we can be confident that we'll</span>
+  <span class="token comment">-- be able to clean up our data.</span>
+  Components<span class="token punctuation">.</span><span class="token function">FilterInstancesWith</span><span class="token punctuation">(</span><span class="token string">"SprintingEffectsState"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span>entity<span class="token punctuation">,</span> sprintingState<span class="token punctuation">)</span>
+    <span class="token comment">-- If the effects attachment was destroyed, then drop the state.</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> sprintingState<span class="token punctuation">.</span>Effects<span class="token punctuation">:</span><span class="token function">IsDescendantOf</span><span class="token punctuation">(</span>game<span class="token punctuation">)</span> <span class="token keyword">then</span>
+      <span class="token keyword">return</span> <span class="token keyword">false</span>
+    <span class="token keyword">end</span>
+
+    <span class="token comment">-- NOTICE: This is how we check if you've actually stopped sprinting.</span>
+    <span class="token comment">-- This can be either from our own RemoveComponent in this system,</span>
+    <span class="token comment">-- a separate system removing Sprinting for whatever reason,</span>
+    <span class="token comment">-- or entity deletion.</span>
+    <span class="token keyword">if</span> Components<span class="token punctuation">.</span><span class="token function">GetComponent</span><span class="token punctuation">(</span>entity<span class="token punctuation">,</span> <span class="token string">"Sprinting"</span><span class="token punctuation">)</span> <span class="token operator">~=</span> <span class="token keyword">nil</span> <span class="token keyword">then</span>
+      <span class="token keyword">return</span> <span class="token keyword">true</span>
+    <span class="token keyword">end</span>
+
+    <span class="token comment">-- NOTICE: This is a new component that mirrors what `GiveTaskParticleEffect`</span>
+    <span class="token comment">-- did last time, which is to disable the particle emitter and then remove it</span>
+    <span class="token comment">-- when it is certain that there's no leftover effects.</span>
+    sprintingState<span class="token punctuation">.</span>Effects<span class="token punctuation">.</span>SprintParticle<span class="token punctuation">.</span>Enabled <span class="token operator">=</span> <span class="token keyword">false</span>
+    ComponentUtil<span class="token punctuation">.</span><span class="token function">AddMappedComponent</span><span class="token punctuation">(</span>
+      sprintingState<span class="token punctuation">.</span>Effects<span class="token punctuation">,</span>
+      <span class="token string">"DestroyLater"</span><span class="token punctuation">,</span>
+      <span class="token string">"SprintingEffects"</span><span class="token punctuation">,</span>
+      TaskScheduler<span class="token punctuation">.</span>Clock <span class="token operator">+</span> sprintingState<span class="token punctuation">.</span>Effects<span class="token punctuation">.</span>SprintParticle<span class="token punctuation">.</span>Lifetime<span class="token punctuation">.</span>Max
+    <span class="token punctuation">)</span>
+
+    <span class="token keyword">return</span> <span class="token keyword">false</span>
+  <span class="token keyword">end</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+
+<span class="token keyword">return</span> Sprinting</code></pre></div>
+<p>Our system now properly follows ECS, is easier to test (since now we can just call <code class="language-text">Sprinting.Update</code> directly), and drops the metatable!</p>
+<h2>Conclusion</h2>
+<p>My discussion about ECS is long from over, I just wanted to give an overview before I go into a lot more detail about the specifics of my codebase.</p>
+<p>Like I said, <strong>I don't feel like I can recommend or not recommend ECS at this time</strong>. While I'm enjoying it now, it's possible that, by the time we release the game and have to do constant updates, that it turns out to be a massive hinderance. I definitely do think, like a lot of engineering topics, it's something you should give a shot on a small project and see if you like it.</p></div><hr/><a href="/">Back to blog</a><div><noscript>You need JavaScript to be able to comment.</noscript></div></div></div></div><div id="gatsby-announcer" style="position:absolute;top:0;width:1px;height:1px;padding:0;overflow:hidden;clip:rect(0, 0, 0, 0);white-space:nowrap;border:0" aria-live="assertive" aria-atomic="true"></div></div><script id="gatsby-script-loader">/*<![CDATA[*/window.pagePath="/articles/adventures-in-ecs/";/*]]>*/</script><script id="gatsby-chunk-mapping">/*<![CDATA[*/window.___chunkMapping={"polyfill":["/polyfill-2f533b7f1322894d1916.js"],"app":["/app-4fb613c1d4a1ca4aca13.js"],"component---src-pages-404-tsx":["/component---src-pages-404-tsx-07ecfdc73cd8b3f891d2.js"],"component---src-pages-index-tsx":["/component---src-pages-index-tsx-f46b1d23f84bb1e2030f.js"],"component---src-templates-article-tsx":["/component---src-templates-article-tsx-43a4beb6ffb6c5fd49dc.js"]};/*]]>*/</script><script src="/polyfill-2f533b7f1322894d1916.js" nomodule=""></script><script src="/component---src-templates-article-tsx-43a4beb6ffb6c5fd49dc.js" async=""></script><script src="/commons-408cdbe71519a8639f61.js" async=""></script><script src="/app-4fb613c1d4a1ca4aca13.js" async=""></script><script src="/framework-bee5b4b4fa37bec3e7c7.js" async=""></script><script src="/webpack-runtime-64c28a96b540963dc61c.js" async=""></script></body></html>
