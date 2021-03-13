@@ -3,7 +3,6 @@ title: "Thoughts and Regrets on DataStore2, and the path forward"
 date: "2021-02-26"
 ---
 
-# Thoughts and Regrets on DataStore2, and the path forward
 The new API changes for data stores have made me reflect a little on what the path for DataStore2 going forward is. As I say many times, my projects move with me. They are open source, yes, and open to contribution, but I don't support projects I don't use, and I don't add features I don't use. This is why, for example, there is no getting data stores by user ID in DataStore2. There are some safety cautions (mostly with users being in a separate server as you use it), but the primary reason is that I have never had a reason to want it, and nobody has sent a pull request.
 
 That being said, I've moved a long way since DataStore2. DataStore2 is a module written 3 years ago for Battle Hats that I released just on a whim, and it blew up far past what I could have ever expected. I'm of course very happy that my work is being used in lots of huge games, and whenever the topic of data store libraries come out, they always have to compare to me. It's also nice to see Roblox seeing DataStore2 as a point of reference for future APIs. That being said, it is very challenging for me to maintain.

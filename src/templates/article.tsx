@@ -41,6 +41,8 @@ const Article: React.FC<{
         published_time: data.markdownRemark.frontmatter.date,
       }}
     >
+      <h1>{markdown.frontmatter.title}</h1>
+
       <div
         dangerouslySetInnerHTML={{
           __html: markdown.html,
