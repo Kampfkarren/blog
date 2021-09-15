@@ -15,7 +15,7 @@ EventC:FireServer()
 
 This is important, as networking is spotty. Roblox uses UDP (RakNet, as far as I know). UDP, contrasting with TCP, sends whatever packets it has in no defined order and with no guarantee if they'll actually send. This is, of course, a problem in many cases, so reliability layers are stacked on top of it.
 
-**However,** Roblox does not give the user any control over whether to enable this reliability layer for specific events. This causes a lot of problems in practice, such as making [great, secure lag compensation impossible](https://developer.valvesoftware.com/wiki/Latency_Compensating_Methods_in_Client/Server_In-game_Protocol_Design_and_Optimization), but those examples are more nuanced and tough to grasp for someone who was *just* introduced to this concept. So here's a very simple, intuitive case for why this functionality is so valued.
+**However,** Roblox does not give the developer any control over whether to enable this reliability layer for specific events. This causes a lot of problems in practice, such as making [great, secure lag compensation impossible](https://developer.valvesoftware.com/wiki/Latency_Compensating_Methods_in_Client/Server_In-game_Protocol_Design_and_Optimization), but those examples are more nuanced and tough to grasp for someone who was *just* introduced to this concept. So here's a very simple, intuitive case for why this functionality is so valued.
 
 ## Fire extinguishers
 
@@ -28,7 +28,7 @@ The networking of this fire extinguisher is straight forward:
 So we hook all that together, and we have a fire extinguisher! But wait...it's only firing one direction. You remember that you want the player to be able to actually AIM your fire extinguisher. Bit trickier, but doable.
 
 - Send an event when the player holds down the trigger
-- **Send the user's mouse/aim position every tick while the trigger is held down**
+- **Send the player's mouse/aim position every tick while the trigger is held down**
 - Send an event when the player releases the trigger
 
 Here comes the problem, though. Because events are required to be reliable and ordered, sending the mouse position often is going to completely choke our bandwidth.
