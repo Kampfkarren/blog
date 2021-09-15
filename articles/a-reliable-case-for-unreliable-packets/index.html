@@ -21,7 +21,7 @@ EventB<span class="token punctuation">:</span><span class="token function">FireS
 EventC<span class="token punctuation">:</span><span class="token function">FireServer</span><span class="token punctuation">(</span><span class="token punctuation">)</span></code></pre></div>
 <p>...then they are guaranteed to come in from the server as A, B, and C, in that order.</p>
 <p>This is important, as networking is spotty. Roblox uses UDP (RakNet, as far as I know). UDP, contrasting with TCP, sends whatever packets it has in no defined order and with no guarantee if they'll actually send. This is, of course, a problem in many cases, so reliability layers are stacked on top of it.</p>
-<p><strong>However,</strong> Roblox does not give the user any control over whether to enable this reliability layer for specific events. This causes a lot of problems in practice, such as making <a href="https://developer.valvesoftware.com/wiki/Latency_Compensating_Methods_in_Client/Server_In-game_Protocol_Design_and_Optimization">great, secure lag compensation impossible</a>, but those examples are more nuanced and tough to grasp for someone who was <em>just</em> introduced to this concept. So here's a very simple, intuitive case for why this functionality is so valued.</p>
+<p><strong>However,</strong> Roblox does not give the developer any control over whether to enable this reliability layer for specific events. This causes a lot of problems in practice, such as making <a href="https://developer.valvesoftware.com/wiki/Latency_Compensating_Methods_in_Client/Server_In-game_Protocol_Design_and_Optimization">great, secure lag compensation impossible</a>, but those examples are more nuanced and tough to grasp for someone who was <em>just</em> introduced to this concept. So here's a very simple, intuitive case for why this functionality is so valued.</p>
 <h2>Fire extinguishers</h2>
 <p>Let's say I want to add fire extinguishers to my game. They put out fires. Simple enough.</p>
 <p>The networking of this fire extinguisher is straight forward:</p>
@@ -32,7 +32,7 @@ EventC<span class="token punctuation">:</span><span class="token function">FireS
 <p>So we hook all that together, and we have a fire extinguisher! But wait...it's only firing one direction. You remember that you want the player to be able to actually AIM your fire extinguisher. Bit trickier, but doable.</p>
 <ul>
 <li>Send an event when the player holds down the trigger</li>
-<li><strong>Send the user's mouse/aim position every tick while the trigger is held down</strong></li>
+<li><strong>Send the player's mouse/aim position every tick while the trigger is held down</strong></li>
 <li>Send an event when the player releases the trigger</li>
 </ul>
 <p>Here comes the problem, though. Because events are required to be reliable and ordered, sending the mouse position often is going to completely choke our bandwidth.</p>
