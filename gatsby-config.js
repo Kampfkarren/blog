@@ -24,7 +24,20 @@ module.exports = {
     {
       resolve: `gatsby-transformer-remark`,
       options: {
-        plugins: [`gatsby-remark-prismjs`],
+        plugins: [
+          `gatsby-remark-prismjs`,
+          {
+            resolve: `gatsby-remark-custom-blocks`,
+            options: {
+              blocks: {
+                info: {
+                  classes: "info",
+                  title: "optional",
+                },
+              },
+            },
+          },
+        ],
       },
     },
 

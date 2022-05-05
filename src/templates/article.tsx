@@ -18,6 +18,21 @@ export const query = graphql`
   }
 `;
 
+const BlogContent = styled.div`
+  .custom-block.info {
+    background: hsla(217, 90%, 60%, 50%);
+    border: 5px solid hsla(217, 90%, 60%, 50%);
+    border-radius: 10px;
+    padding: 0.5% 1.5%;
+
+    .custom-block-heading {
+      font-weight: bold;
+      font-size: 1.5em;
+      text-align: center;
+    }
+  }
+`;
+
 const Article: React.FC<{
   data: {
     markdownRemark: {
@@ -59,11 +74,13 @@ const Article: React.FC<{
         <p>{markdown.timeToRead} minute read</p>
       </header>
 
-      <div
-        dangerouslySetInnerHTML={{
-          __html: markdown.html,
-        }}
-      />
+      <BlogContent>
+        <span
+          dangerouslySetInnerHTML={{
+            __html: markdown.html,
+          }}
+        />
+      </BlogContent>
 
       <hr />
 
