@@ -21,8 +21,7 @@ const GlobalStyle = createGlobalStyle`
 
 const Content = styled.div`
   background-color: #eee;
-  background-image: radial-gradient(#ddd 3%, transparent 20%),
-    radial-gradient(#bbb 3%, transparent 20%);
+  background-image: radial-gradient(#ddd 22%, transparent 11%);
   background-position: 0 0, 50px 50px;
   background-size: 10px 10px;
   margin: auto;
