@@ -19,7 +19,7 @@ When you call `:get()`, one of two things will happen. If this is the first time
 
 One-set is the opposite end. "Setting" to a store just updates the cached value. The one-set happens when the player leaves, that is the only time `:SetAsync` is called. You can manually call `:save()` if you wish, like when the player purchases something with Robux, or on a recurring timer, but uright does not require it.
 
-This makes working within's Roblox admittedly generous data store limits completely straight forward, with no surprises. uright will only save when it has to, or when you ask it to.
+This makes working within Roblox's admittedly generous data store limits completely straight forward, with no surprises. uright will only save when it has to, or when you ask it to.
 
 The caveat here is when two servers override the same data. Consider the following scenario.
 
