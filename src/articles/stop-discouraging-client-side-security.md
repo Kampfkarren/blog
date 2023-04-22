@@ -12,7 +12,7 @@ If you've been making games on Roblox long enough, you have probably heard this 
 Roblox uses remote events to communicate between the server and the client. You could have a remote event to, say, use a damage powerup. When the server receives that, it'll give you the buff. However, because Roblox runs on your computer, you can actually make it do whatever you want on your own end. You can fire the "use damage powerup" remote event whenever you want. It's up to the server to recognize that request as invalid, and act accordingly.
 
 ```lua
-UseDamagePowerup.OnClientEvent:Connect(function(player)
+UseDamagePowerup.OnServerEvent:Connect(function(player)
 	if not hasDamagePowerup(player) then
 		-- Don't do it!
 		return
