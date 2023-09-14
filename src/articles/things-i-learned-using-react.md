@@ -464,7 +464,7 @@ local function TodoList(props: {
 
 	for _, entry in props.entries do
 		children[entry] = e(TodoEntry, {
-			text = entries,
+			text = entry,
 		})
 	end
 
@@ -525,7 +525,7 @@ local function TodoList(props: {
 
 	for _, entry in props.entries do
 		children[uniqueKey(entry)] = e(TodoEntry, {
-			text = entries,
+			text = entry,
 		})
 	end
 
@@ -970,7 +970,7 @@ local function TodoList(props: {
 
 	for _, entry in props.entries do
 		entries[uniqueKey(entry)] = e(TodoEntry, {
-			text = entries,
+			text = entry,
 		})
 	end
 
