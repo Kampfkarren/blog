@@ -344,7 +344,7 @@ Table type &#39;{ x: number, y: number }&#39; not compatible with type &#39;Base
 
 	<span class="token keyword">for</span> _<span class="token punctuation">,</span> entry <span class="token keyword">in</span> props<span class="token punctuation">.</span>entries <span class="token keyword">do</span>
 		children<span class="token punctuation">[</span>entry<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">e</span><span class="token punctuation">(</span>TodoEntry<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-			text <span class="token operator">=</span> entries<span class="token punctuation">,</span>
+			text <span class="token operator">=</span> entry<span class="token punctuation">,</span>
 		<span class="token punctuation">}</span><span class="token punctuation">)</span>
 	<span class="token keyword">end</span>
 
@@ -392,7 +392,7 @@ Table type &#39;{ x: number, y: number }&#39; not compatible with type &#39;Base
 
 	<span class="token keyword">for</span> _<span class="token punctuation">,</span> entry <span class="token keyword">in</span> props<span class="token punctuation">.</span>entries <span class="token keyword">do</span>
 		children<span class="token punctuation">[</span><span class="token function">uniqueKey</span><span class="token punctuation">(</span>entry<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">e</span><span class="token punctuation">(</span>TodoEntry<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-			text <span class="token operator">=</span> entries<span class="token punctuation">,</span>
+			text <span class="token operator">=</span> entry<span class="token punctuation">,</span>
 		<span class="token punctuation">}</span><span class="token punctuation">)</span>
 	<span class="token keyword">end</span>
 
@@ -716,7 +716,7 @@ Set<span class="token operator">-</span>Content <span class="token operator">-</
 
 	<span class="token keyword">for</span> _<span class="token punctuation">,</span> entry <span class="token keyword">in</span> props<span class="token punctuation">.</span>entries <span class="token keyword">do</span>
 		entries<span class="token punctuation">[</span><span class="token function">uniqueKey</span><span class="token punctuation">(</span>entry<span class="token punctuation">)</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token function">e</span><span class="token punctuation">(</span>TodoEntry<span class="token punctuation">,</span> <span class="token punctuation">{</span>
-			text <span class="token operator">=</span> entries<span class="token punctuation">,</span>
+			text <span class="token operator">=</span> entry<span class="token punctuation">,</span>
 		<span class="token punctuation">}</span><span class="token punctuation">)</span>
 	<span class="token keyword">end</span>
 
