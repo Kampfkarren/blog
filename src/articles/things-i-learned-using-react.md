@@ -806,7 +806,7 @@ From there, my context provider would do the heavy lifting of keeping this state
 
 ```lua
 local function CoinsProvider(props: {
-	children: number,
+	children: React.ReactNode,
 })
 	local coins, setCoins = React.useState(0)
 
@@ -913,7 +913,7 @@ local default: ContextType = {
 local Context = React.createContext(default)
 
 local function Provider(props: {
-	children: number,
+	children: React.ReactNode,
 })
 	local coins, setCoins = React.useState(0)
 
