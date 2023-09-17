@@ -594,7 +594,7 @@ Set<span class="token operator">-</span>Content <span class="token operator">-</
 <p>...and then expand it later to include things like an easily accessible function for trying to purchase things that would open up a buy menu if you did not have enough coins.</p>
 <p>From there, my context provider would do the heavy lifting of keeping this state up to date.</p>
 <div class="gatsby-highlight" data-language="lua"><pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">CoinsProvider</span><span class="token punctuation">(</span>props<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-	children<span class="token punctuation">:</span> number<span class="token punctuation">,</span>
+	children<span class="token punctuation">:</span> React<span class="token punctuation">.</span>ReactNode<span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 	<span class="token keyword">local</span> coins<span class="token punctuation">,</span> setCoins <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
 
@@ -673,7 +673,7 @@ Set<span class="token operator">-</span>Content <span class="token operator">-</
 <span class="token keyword">local</span> Context <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">createContext</span><span class="token punctuation">(</span>default<span class="token punctuation">)</span>
 
 <span class="token keyword">local</span> <span class="token keyword">function</span> <span class="token function">Provider</span><span class="token punctuation">(</span>props<span class="token punctuation">:</span> <span class="token punctuation">{</span>
-	children<span class="token punctuation">:</span> number<span class="token punctuation">,</span>
+	children<span class="token punctuation">:</span> React<span class="token punctuation">.</span>ReactNode<span class="token punctuation">,</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span>
 	<span class="token keyword">local</span> coins<span class="token punctuation">,</span> setCoins <span class="token operator">=</span> React<span class="token punctuation">.</span><span class="token function">useState</span><span class="token punctuation">(</span><span class="token number">0</span><span class="token punctuation">)</span>
 
