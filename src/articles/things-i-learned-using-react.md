@@ -464,7 +464,7 @@ local function TodoList(props: {
 
 	for _, entry in props.entries do
 		children[entry] = e(TodoEntry, {
-			text = entries,
+			text = entry,
 		})
 	end
 
@@ -525,7 +525,7 @@ local function TodoList(props: {
 
 	for _, entry in props.entries do
 		children[uniqueKey(entry)] = e(TodoEntry, {
-			text = entries,
+			text = entry,
 		})
 	end
 
@@ -806,7 +806,7 @@ From there, my context provider would do the heavy lifting of keeping this state
 
 ```lua
 local function CoinsProvider(props: {
-	children: number,
+	children: React.ReactNode,
 })
 	local coins, setCoins = React.useState(0)
 
@@ -913,7 +913,7 @@ local default: ContextType = {
 local Context = React.createContext(default)
 
 local function Provider(props: {
-	children: number,
+	children: React.ReactNode,
 })
 	local coins, setCoins = React.useState(0)
 
@@ -970,7 +970,7 @@ local function TodoList(props: {
 
 	for _, entry in props.entries do
 		entries[uniqueKey(entry)] = e(TodoEntry, {
-			text = entries,
+			text = entry,
 		})
 	end
 
