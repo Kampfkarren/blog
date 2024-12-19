@@ -1,5 +1,5 @@
 ---
-title: "I Cannot Use Editable Images"
+title: "I cannot use EditableImages"
 date: "2024-12-18"
 ---
 
@@ -121,7 +121,7 @@ Speaking of which, this was mentioned way back in the beginning of the post in t
 
 ## Fine, I'll talk about ID verification
 
-Okay, so to be transparent, I'm really just upset I can't do drawing. The other ideas are great, but if I titled this "**You** Cannot Use Editable Images", which it was originally, then a bunch of people would tell me that they actually can for their use cases. You **can** use them to make things like minimaps, with extreme effort. You **can** use them to create things like graphs. You **can** use them to create dynamic blood effects. You can even make a bunch of emulators. Like, a lot of them.[^9]
+Okay, so to be transparent, I'm really just upset I can't do drawing. The other ideas are great, but if I titled this "**You** cannot use EditableImages", which it was originally, then a bunch of people would tell me that they actually can for their use cases. You **can** use them to make things like minimaps, with extreme effort. You **can** use them to create things like graphs. You **can** use them to create dynamic blood effects. You can even make a bunch of emulators. Like, a lot of them.[^9]
 
 But this time, I'll be upset on *your* behalf. Despite all of my writing, I bet money that the real reason the Client Beta release of EditableImage did not receive as many likes as it could've is because of this restriction:
 
@@ -158,7 +158,6 @@ So, with that all said, I will say as if I was making a feature request: As a Ro
 [^5]: It actually probably started with animations, where only animations owned by a game's creator can load. This is presumably done to avoid exploiters playing bad animations in other games by virtue of the fact that animations played locally always replicate, but I see that more as a technical problem than the product problem that EditableImage permissions have.
 
 [^6]: On a positive note, it seems like they [want to lift this restriction at some point](https://devforum.roblox.com/t/assetservicesearchaudio-can-give-audio-that-you-dont-have-permission-to-play-making-it-nearly-useless/3278855/3?u=kampfkarren).
-> We are planning on making changes in the future that will make free audio available in experiences without the creator of the experience needing the audio in their inventory.
 
 [^7]: Footnote for this entire section: from a purely technical perspective, I can load the image on the backend I already have, send back the pixels, and let the user edit it. The technical downside is this requires that I store all this as binary again, I have to find an efficient way to send this over the wire, and it can't be moderated because I can't publish the image. Outside of a technical perspective, this is a very intentional product decision and so I dare not test my luck by working around it and getting moderated. And to not leave it unsaid, it's a stupid workaround to an ostensibly manufactured problem.
 
