@@ -37,10 +37,6 @@ const Content = styled.div`
     margin: 8px;
     border-left: 4px solid #77f;
   }
-
-  p {
-    margin: 0;
-  }
 `;
 
 const useSiteMetadata = () => {
