@@ -30,6 +30,17 @@ const Content = styled.div`
 
   max-width: 850px;
   width: calc(100% - 20px);
+
+  blockquote {
+    background: white;
+    padding: 8px;
+    margin: 8px;
+    border-left: 4px solid #77f;
+  }
+
+  p {
+    margin: 0;
+  }
 `;
 
 const useSiteMetadata = () => {

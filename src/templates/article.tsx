@@ -66,7 +66,7 @@ const Article: React.FC<{
       >
         <h1
           style={{
-            marginBottom: "-10px",
+            marginBottom: "-4px",
           }}
         >
           {markdown.frontmatter.title}
