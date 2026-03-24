@@ -56,7 +56,7 @@ The intent is to make sure that we exactly match our context type, and that thin
 
 This isn't necessary anymore with `<<T>>`--all the same benefits apply.
 
-As a reminder as to why we don't do `:: ContextType`, the reason is because `::` will only perform very specific kinds of validation on what you are casting, and can trivially hurt soundness.
+For a reminder as to why we don't do `:: ContextType`, the reason is because `::` will only perform very specific kinds of validation on what you are casting, and can trivially hurt soundness.
 
 ```lua
 local function f(x: number?)
